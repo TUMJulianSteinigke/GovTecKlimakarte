@@ -45,19 +45,23 @@ starteZoom = 10.5
 #   Layout of Website
 # # # # # # # # # # # # # # # # #
 
-text, mapCol = st.columns([1, 3])
+text, mapCol = st.columns([1, 2])
 with text:
     pass
+
+
+
 
 with mapCol:
 
     # st.map()
     m = folium.Map(location=[48.137154, 11.576124], zoom_start=starteZoom, min_zoom=starteZoom, max_zoom=17)
 
-    folium.GeoJson(heatLevels[2],
+    folium.GeoJson(heatLevels[0],
                    zoom_on_click=True,
                    style_function=lambda feature: {
-                       "fillColor": levelColors[2],
+                       "fillColor": levelColors[0]+"75",
+                       "fillOpacity":1.0,
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
@@ -66,16 +70,18 @@ with mapCol:
     folium.GeoJson(heatLevels[1],
                    zoom_on_click=True,
                    style_function=lambda feature: {
-                       "fillColor": levelColors[1],
+                       "fillColor": levelColors[1]+"75",
+                       "fillOpacity":1.0,
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
                    }
                    ).add_to(m)
-    folium.GeoJson(heatLevels[0],
+    folium.GeoJson(heatLevels[2],
                    zoom_on_click=True,
                    style_function=lambda feature: {
-                       "fillColor": levelColors[0],
+                       "fillColor": levelColors[2]+"75",
+                       "fillOpacity":1.0,
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
