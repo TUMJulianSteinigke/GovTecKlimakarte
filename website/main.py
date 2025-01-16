@@ -1,5 +1,6 @@
 import folium
 from folium import GeoJson
+import pandas as pd
 from streamlit_folium import st_folium
 import geopandas as gpd
 import streamlit as st
@@ -10,6 +11,8 @@ st.title("HeatTropolis")
 # # # # # # # # # # # # # # # # #
 #   Setting Layers
 # # # # # # # # # # # # # # # # #
+
+text_fill = pd.read_csv('UHI.csv')
 
 def styleGen(color: int):
 
@@ -51,20 +54,7 @@ with text:
 
 with text:
     st.write("**Urban Heat Island Analysis**")
-    st.write("""
-**Location:** Munich City Center, Maxvorstadt District  
-**Estimated Temperature Deviation:** +4.2°C above city average  
-**Severity Level:** High (Red Zone)  
-
-**Mitigation Measures:**  
-- **Urban Greening:** Plant 250+ trees (€120,000) to reduce temperatures by 1.5°C.  
-- **Cool Roofs Initiative:** Retrofit 60,000 m² of rooftops (€450,000) with reflective materials.  
-- **Water Features:** Install public fountains (€95,000) for localized cooling.  
-
-**Total Cost:** €665,000  
-**Implementation Timeline:** 18 months  
-""")
-
+    st.write(text_fill)
 
 with mapCol:
 
