@@ -2,7 +2,6 @@ import folium
 from folium import GeoJson
 from streamlit_folium import st_folium
 import geopandas as gpd
-
 import streamlit as st
 st.set_page_config(layout="wide")
 
@@ -26,11 +25,14 @@ for i in range(levels):
 
 
 levelColors = [
-    "#ffeda0",
-    "#feb24c",
-    "#f03b20"
-    
+   # "#ffeda0",
+   # "#feb24c",
+   # "#f03b20"
+    '#ffd100',
+    '#ff7400',
+    '#ff0000'
 ]
+
 
 # # # # # # # # # # # # # # # # #
 #   Setting Layers
