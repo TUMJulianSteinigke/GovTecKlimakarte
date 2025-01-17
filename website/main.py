@@ -12,6 +12,7 @@ st.title("HeatTropolis")
 #   Setting Layers
 # # # # # # # # # # # # # # # # #
 
+
 text_fill = pd.read_csv('UHI.csv')
 
 def styleGen(color: int):
@@ -70,7 +71,12 @@ with mapCol:
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
-                   }
+                   },
+                   popup=folium.GeoJsonPopup(
+                        fields=["district"],
+                        aliases=["District:"],
+                        localize=True
+                   )
                    ).add_to(m)
     folium.GeoJson(heatLevels[1],
                    zoom_on_click=True,
@@ -104,6 +110,11 @@ with mapCol:
     #                    ).add_to(m)
 
     st_folium(m, width=1000, height=600)
+
+st.button(label="scrape stuff", key="btn_scrape")
+
+if st.session_state.get("btn_scrape"):
+    st.write('hello')
 
 st.markdown(
     """
