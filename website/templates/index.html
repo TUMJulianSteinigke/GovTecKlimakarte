@@ -27,6 +27,15 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for separation */
             overflow-y: auto; /* Enable scrolling if content overflows */
         }
+        .left h2 {
+            position: sticky; /* Sticky positioning keeps the heading in place */
+            top: 0; /* Sticks the heading to the top of the column */
+            background-color: #f0f0f0; /* Match background color to prevent overlay issues */
+            margin: 0; /* Remove margin to align neatly */
+            padding: 10px 0; /* Add some padding for visual spacing */
+            z-index: 10; /* Ensure it stays above the scrolling content */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+        }
         .right {
             margin-left: 30%; /* Leave space for the left column */
             flex: 1;
@@ -43,7 +52,7 @@
 </head>
 <body>
     <div class="column left">
-        <h2>Left Column</h2>
+        <h2>Heat Island: Maxvorstadt</h2>
         <div id="clickText">
             <!-- Long content to demonstrate scrolling -->
             <p>Welcome to Heattropolis!</p>
