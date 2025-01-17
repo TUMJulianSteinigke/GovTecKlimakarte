@@ -127,19 +127,22 @@ def click():
     if(level == 0):
         level_string = ' Level ' + str(level + 1) + ' (Low)'
         temp_range_string = ' 35 - 40°C'
+        short_measures_string = ' Stay hydrated and avoid heavy physical activity.'
 
     if(level == 1):
         level_string = ' Level ' + str(level + 1) + ' (Medium)' 
         temp_range_string = ' 40 - 45°C'
+        short_measures_string = ' Vulnerable groups should stay indoors; use fans or cooling devices.'
 
     if(level == 2):
         level_string = ' Level ' + str(level + 1) + ' (High)'    
         temp_range_string = ' >45°C'
+        short_measures_string = ' Public cooling stations activated; limit outdoor activities.'
 
     size_string = ' ' + str(size / 1000000) +'km²'
 
     district_string = ' ' + str(district)
 
 
-    return render_template('sideElement.html', level = level_string, size = size_string, district = district_string, temp_range = temp_range_string)
+    return render_template('sideElement.html', level = level_string, size = size_string, district = district_string, temp_range = temp_range_string, st_measures = short_measures_string)
 app.run()
