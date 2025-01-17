@@ -12,7 +12,7 @@ app = Flask(__name__)
 levels = 3
 heatLevels = []
 for i in range(levels):
-    heatLevels.append(f"heatLevel{i+1}.geojson")
+    heatLevels.append(f"heatLevel{i+1}_with_distr.geojson")
     gp = gpd.read_file(heatLevels[i])
     gp["level"] = i
     os.remove(heatLevels[i])

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             const url = new URL('/clickEvent', window.location.origin);
                             url.searchParams.append('level', JSON.stringify(properties.level));
                             url.searchParams.append('size', JSON.stringify(properties.area));
-                            url.searchParams.append('district', JSON.stringify("null"));
+                            url.searchParams.append('district', JSON.stringify(properties.district));
 
                             fetch(url, {
                                 method: 'GET'
