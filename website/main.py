@@ -1,26 +1,18 @@
 import folium
 from folium import GeoJson
-from folium import FeatureGroup
+import pandas as pd
 from streamlit_folium import st_folium
 import geopandas as gpd
 import streamlit as st
-
 st.set_page_config(layout="wide")
 
 st.title("HeatTropolis")
 
-my_js = """
-alert("Hola mundo");
-"""
-
-# Wrapt the javascript as html code
-my_html = f"<script>{my_js}</script><h1>TEST</h1>"
-st.text(my_html)
-
-
 # # # # # # # # # # # # # # # # #
 #   Setting Layers
 # # # # # # # # # # # # # # # # #
+
+text_fill = pd.read_csv('UHI.csv')
 
 def styleGen(color: int):
 
@@ -57,29 +49,18 @@ starteZoom = 10.5
 # # # # # # # # # # # # # # # # #
 
 text, mapCol = st.columns([1, 3])
+with text:
+    pass
 
 with text:
     st.write("**Urban Heat Island Analysis**")
-    st.write("""
-**Location:** Munich City Center, Maxvorstadt District  
-**Estimated Temperature Deviation:** +4.2°C above city average  
-**Severity Level:** High (Red Zone)  
-
-**Mitigation Measures:**  
-- **Urban Greening:** Plant 250+ trees (€120,000) to reduce temperatures by 1.5°C.  
-- **Cool Roofs Initiative:** Retrofit 60,000 m² of rooftops (€450,000) with reflective materials.  
-- **Water Features:** Install public fountains (€95,000) for localized cooling.  
-
-**Total Cost:** €665,000  
-**Implementation Timeline:** 18 months  
-""")
-
+    st.write(text_fill)
 
 with mapCol:
 
     # st.map()
-    m = folium.Map(location=[48.137154, 11.576124], zoom_start=starteZoom, min_zoom=starteZoom, max_zoom=17)
-
+    m = folium.Map(location=[48.137154, 11.576124], zoom_start=starteZoom, min_zoom=starteZoom, max_zoom=17, tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    attr="Esri World Imagery")
 
     folium.GeoJson(heatLevels[0],
                    zoom_on_click=True,
@@ -89,7 +70,6 @@ with mapCol:
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
-
                    }
                    ).add_to(m)
     folium.GeoJson(heatLevels[1],
@@ -100,10 +80,9 @@ with mapCol:
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
-
                    }
                    ).add_to(m)
-    g = folium.GeoJson(heatLevels[2],
+    folium.GeoJson(heatLevels[2],
                    zoom_on_click=True,
                    style_function=lambda feature: {
                        "fillColor": levelColors[2]+"75",
@@ -111,10 +90,8 @@ with mapCol:
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
-
                    }
                    ).add_to(m)
-
     # for i in range():
     #     folium.GeoJson(heatLevels[i],
     #                    zoom_on_click=True,
