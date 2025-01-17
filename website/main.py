@@ -1,11 +1,22 @@
 import folium
 from folium import GeoJson
+from folium import FeatureGroup
 from streamlit_folium import st_folium
 import geopandas as gpd
 import streamlit as st
+
 st.set_page_config(layout="wide")
 
 st.title("HeatTropolis")
+
+my_js = """
+alert("Hola mundo");
+"""
+
+# Wrapt the javascript as html code
+my_html = f"<script>{my_js}</script><h1>TEST</h1>"
+st.text(my_html)
+
 
 # # # # # # # # # # # # # # # # #
 #   Setting Layers
@@ -46,8 +57,6 @@ starteZoom = 10.5
 # # # # # # # # # # # # # # # # #
 
 text, mapCol = st.columns([1, 3])
-with text:
-    pass
 
 with text:
     st.write("**Urban Heat Island Analysis**")
@@ -69,8 +78,8 @@ with text:
 with mapCol:
 
     # st.map()
-    m = folium.Map(location=[48.137154, 11.576124], zoom_start=starteZoom, min_zoom=starteZoom, max_zoom=17, tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    attr="Esri World Imagery")
+    m = folium.Map(location=[48.137154, 11.576124], zoom_start=starteZoom, min_zoom=starteZoom, max_zoom=17)
+
 
     folium.GeoJson(heatLevels[0],
                    zoom_on_click=True,
@@ -80,6 +89,7 @@ with mapCol:
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
+
                    }
                    ).add_to(m)
     folium.GeoJson(heatLevels[1],
@@ -90,9 +100,10 @@ with mapCol:
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
+
                    }
                    ).add_to(m)
-    folium.GeoJson(heatLevels[2],
+    g = folium.GeoJson(heatLevels[2],
                    zoom_on_click=True,
                    style_function=lambda feature: {
                        "fillColor": levelColors[2]+"75",
@@ -100,8 +111,10 @@ with mapCol:
                        "color": "black",
                        "weight": 2,
                        "dashArray": "5, 5",
+
                    }
                    ).add_to(m)
+
     # for i in range():
     #     folium.GeoJson(heatLevels[i],
     #                    zoom_on_click=True,
