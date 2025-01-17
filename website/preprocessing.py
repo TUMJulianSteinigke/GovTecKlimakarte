@@ -15,8 +15,8 @@ def reverse_geocode(lat, lon):
         return "Unknown District"
 
 # Load GeoJSON file
-input_geojson_path = "heatLevel1.geojson"
-output_geojson_path = "heatLevel1_with_distr.geojson"
+input_geojson_path = "heatLevel3.geojson"
+output_geojson_path = "heatLevel3_with_distr.geojson"
 
 with open(input_geojson_path, "r") as f:
     geojson_data = json.load(f)

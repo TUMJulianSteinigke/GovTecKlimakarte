@@ -19,7 +19,6 @@ for i in range(levels):
     gp.to_file(heatLevels[i], driver="GeoJson")
 
 
-
 levelColors = [
     # "#ffeda0",
     # "#feb24c",
@@ -125,7 +124,16 @@ def click():
     print(f"Level: {level}")
     print(f"Size: {size}")
     print(f"district: {district}")
+    if(level == 0):
+        level_string = ' Level ' + str(level + 1) + ' (Low)'
+    if(level == 1):
+        level_string = ' Level ' + str(level + 1) + ' (Medium)' 
+    if(level == 2):
+        level_string = ' Level ' + str(level + 1) + ' (High)'    
 
-    return render_template('sideElement.html', num=3)
+    size_string = ' ' + str(size / 1000000) +'km²'
+
+    district_string = ' ' + str(district)
+
+    return render_template('sideElement.html', level = level_string, size = size_string, district = district_string)
 app.run()
-
