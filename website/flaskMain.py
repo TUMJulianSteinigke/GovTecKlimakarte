@@ -1,7 +1,8 @@
-from flask import Flask, request, session, redirect, render_template
+from flask import Flask, request, session, redirect, render_template, render_template_string
 import folium
 from folium import GeoJson
 from folium import FeatureGroup
+import geopandas as gpd
 
 app = Flask(__name__)
 
@@ -10,6 +11,11 @@ levels = 3
 heatLevels = []
 for i in range(levels):
     heatLevels.append(f"heatLevel{i+1}.geojson")
+    # gp = gpd.read_file(heatLevels[i])
+    # gp["level"] = i
+    # gp.to_file(heatLevels[i], driver="GeoJson")
+
+
 
 
 levelColors = [
@@ -31,7 +37,7 @@ starteZoom = 10.5
 @app.route('/')
 def index():
 
-    m = folium.Map(tiles='stamentoner' ,location=[48.137154, 11.576124], zoom_start=starteZoom, min_zoom=starteZoom, max_zoom=17)
+    m = folium.Map(location=[48.137154, 11.576124], zoom_start=starteZoom, min_zoom=starteZoom, max_zoom=17)
 
 
     folium.GeoJson(heatLevels[0],
@@ -73,17 +79,40 @@ def index():
     m._name = 'map'
     m._id = '1'
     m.get_root().html.add_child(folium.JavascriptLink('static/js/polygonListener.js'))
-    iframe = m.get_root()._repr_html_()
+    
+    m.get_root().render()
+    header = m.get_root().header.render()
+    body_html = m.get_root().html.render()
+    script = m.get_root().script.render()
 
-    return render_template("index.html",iframe=iframe, sideText=render_template("sideElement.html"))
+    # return render_template_string(
+    #     """
+    #         <!DOCTYPE html>
+    #         <html>
+    #             <head>
+    #                 {{ header|safe }}
+    #             </head>
+    #             <body>
+    #                 <h1>Using components</h1>
+    #                 {{ body_html|safe }}
+    #                 <script>
+    #                     {{ script|safe }}
+    #                 </script>
+    #             </body>
+    #         </html>
+    #     """,
+    #     header=header,
+    #     body_html=body_html,
+    #     script=script,
+    # )
+    return render_template("index.html", foliumHeader=header, foliumBody=body_html,foliumJs=script)
 
-@app.route('/clickEvent', methods=['POST'])
+@app.route('/clickEvent')
 def click():
-    cordinates = request.form['cords']
-    polygonType = request.form['type']
-    print(cordinates)
-    print(polygonType)
-    pass
+    # cordinates = request.form.values()
+    # print(cordinates)
+    print("heyyy")
+    return render_template('sideElement.html')
 
 
 

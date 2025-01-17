@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heattropolis</title>
-    <script>
-
-
-
-    </script>
 
     <style>
         body {
@@ -33,15 +28,22 @@
             margin: 0;
         }
     </style>
+
+    {{foliumHeader | safe}}
+
 </head>
 <body>
     <div class="column left">
         <h2>Left Column</h2>
-        <p>this will be text</p>
-        {{sideText | safe}}
+        <div id="clickText">
+
+        </div>
     </div>
     <div class="column right">
-        {{iframe | safe}}
+        {{foliumBody | safe}}
+        <script>
+            {{foliumJs | safe}}
+        </script>
     </div>
 </body>
 </html>

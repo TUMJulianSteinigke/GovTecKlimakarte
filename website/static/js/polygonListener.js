@@ -13,9 +13,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             console.log('Polygon clicked!');
                             console.log('Coordinates:', coordinates);
-                            console.log('Properties:', properties);
 
-                            
+                            console.log('Properties:', properties);
+                            console.log('fid', properties.fid); 
+
+                            const url = new URL('/clickEvent', window.location.origin);
+                            url.searchParams.append('coordinates', JSON.stringify(coordinates));
+                            url.searchParams.append('properties', JSON.stringify(properties));
+
+                            fetch(url, {
+                                method: 'GET'
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                response.text().then(data => {
+                                    document.getElementById("clickText").innerHTML = data;
+                                })
+                                return response.text();
+                            })
+                            .then(data => {
+                                console.log('Server response:', data);
+                            })
+                            .catch(error => {
+                                console.error('There was a problem with the fetch operation:', error);
+                            });
                         });
                     }
                 });
