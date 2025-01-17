@@ -18,14 +18,23 @@
             box-sizing: border-box;
         }
         .left {
-            flex: 1;
-            background-color: #f0f0f0;
+            position: fixed; /* Fixes the left column in place */
+            top: 0;
+            left: 0;
+            width: 30%; /* Set the width for the left column */
+            height: 100vh; /* Make it span the full height of the viewport */
+            background-color: #f0f0f0; /* Background color for the left column */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for separation */
+            overflow-y: auto; /* Enable scrolling if content overflows */
         }
         .right {
-            flex: 3;
-            background-color: #d9eaf7;
-            padding: 0;
-            margin: 0;
+            margin-left: 30%; /* Leave space for the left column */
+            flex: 1;
+            height: 100vh; /* Full viewport height */
+            background-color: #f0f0f0;
+            overflow-y: scroll; /* Enable scrolling for the right column */
+            padding: 20px;
+            box-sizing: border-box;
         }
     </style>
 
@@ -36,7 +45,10 @@
     <div class="column left">
         <h2>Left Column</h2>
         <div id="clickText">
-
+            <!-- Long content to demonstrate scrolling -->
+            <p>Welcome to Heattropolis!</p>
+            <p>You came to the rigt place to BEAT THE HEAT</p>
+            <p>Click on an Urban Heat Island to learn more.</p>
         </div>
     </div>
     <div class="column right">

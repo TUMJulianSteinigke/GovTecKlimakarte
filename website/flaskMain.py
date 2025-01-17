@@ -16,8 +16,6 @@ for i in range(levels):
     # gp.to_file(heatLevels[i], driver="GeoJson")
 
 
-
-
 levelColors = [
     # "#ffeda0",
     # "#feb24c",
@@ -113,7 +111,5 @@ def click():
     # print(cordinates)
     print("heyyy")
     return render_template('sideElement.html')
-
-
-
 app.run()
+
