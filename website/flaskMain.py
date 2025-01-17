@@ -126,14 +126,20 @@ def click():
     print(f"district: {district}")
     if(level == 0):
         level_string = ' Level ' + str(level + 1) + ' (Low)'
+        temp_range_string = ' 35 - 40°C'
+
     if(level == 1):
         level_string = ' Level ' + str(level + 1) + ' (Medium)' 
+        temp_range_string = ' 40 - 45°C'
+
     if(level == 2):
         level_string = ' Level ' + str(level + 1) + ' (High)'    
+        temp_range_string = ' >45°C'
 
     size_string = ' ' + str(size / 1000000) +'km²'
 
     district_string = ' ' + str(district)
 
-    return render_template('sideElement.html', level = level_string, size = size_string, district = district_string)
+
+    return render_template('sideElement.html', level = level_string, size = size_string, district = district_string, temp_range = temp_range_string)
 app.run()
