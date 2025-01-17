@@ -40,7 +40,7 @@ starteZoom = 10.5
 
 @app.route('/')
 def index():
-    return render_template("heattropolis.io-main/Game2.html")
+    return render_template("frontpage.html")
 
 @app.route('/map')
 def map():
