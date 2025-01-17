@@ -18,8 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.log('fid', properties.fid); 
 
                             const url = new URL('/clickEvent', window.location.origin);
-                            url.searchParams.append('coordinates', JSON.stringify(coordinates));
-                            url.searchParams.append('properties', JSON.stringify(properties));
+                            url.searchParams.append('level', JSON.stringify(properties.level));
+                            url.searchParams.append('size', JSON.stringify(properties.area));
+                            url.searchParams.append('district', JSON.stringify("null"));
 
                             fetch(url, {
                                 method: 'GET'

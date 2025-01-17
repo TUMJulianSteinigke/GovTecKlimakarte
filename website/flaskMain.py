@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request, session, redirect, render_template, render_template_string
 import folium
 from folium import GeoJson
@@ -11,9 +13,11 @@ levels = 3
 heatLevels = []
 for i in range(levels):
     heatLevels.append(f"heatLevel{i+1}.geojson")
-    # gp = gpd.read_file(heatLevels[i])
-    # gp["level"] = i
-    # gp.to_file(heatLevels[i], driver="GeoJson")
+    gp = gpd.read_file(heatLevels[i])
+    gp["level"] = i
+    os.remove(heatLevels[i])
+    gp.to_file(heatLevels[i], driver="GeoJson")
+
 
 
 levelColors = [
@@ -32,8 +36,14 @@ levelColors = [
 
 # MAP
 starteZoom = 10.5
+
+
 @app.route('/')
 def index():
+    return render_template("heattropolis.io-main/Game2.html")
+
+@app.route('/map')
+def map():
 
     m = folium.Map(location=[48.137154, 11.576124], zoom_start=starteZoom, min_zoom=starteZoom, max_zoom=17)
 
@@ -107,9 +117,15 @@ def index():
 
 @app.route('/clickEvent')
 def click():
-    # cordinates = request.form.values()
-    # print(cordinates)
-    print("heyyy")
-    return render_template('sideElement.html')
+    params = request.args
+    
+    level = int(params.get("level"))
+    size = int(params.get("size"))
+    district = params.get("district")
+    print(f"Level: {level}")
+    print(f"Size: {size}")
+    print(f"district: {district}")
+
+    return render_template('sideElement.html', num=3)
 app.run()
 
