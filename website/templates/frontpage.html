@@ -2,6 +2,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Rozha+One&family=Yeseva+One&display=swap" rel="stylesheet">
+
     <title>Urban Heat Island Solution: HEATTROPOLIS</title>
     <style>
         body {
@@ -16,6 +20,20 @@
             color: #fff;
             padding: 20px;
             text-align: center;
+        }
+        header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         nav {
             display: flex;
@@ -34,6 +52,16 @@
         }
         section {
             padding: 20px;
+        }
+        .top-left {
+        position: absolute;
+        top: 12px;
+        left: 40px;
+        text-align: left;
+        font-family: 'Yeseva One', mono ;
+        font-size: 150;
+        font-weight: 1;
+        line-height: 1.2;
         }
         .cta {
             background: #3498db;
@@ -73,11 +101,22 @@
             border-radius: 10px;
         }
         .uhi-progress {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 20px 0;
-}
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 20px 0;
+        }
+        .caprasimo-regular {
+        font-family: "Caprasimo", serif;
+        font-style: normal;
+        }
+        .rozha-one-regular {
+        font-family: "Rozha One", serif;
+        font-weight: 400;
+        font-style: normal;
+        }
+
+
 
 .uhi-image {
     text-align: center;
@@ -113,8 +152,12 @@
 </head>
 <body>
     <header>
-        <h1>Urban Heat Island Solutions</h1>
-        <p>Discover innovative, data-driven strategies to combat urban heat islands (UHI) and create energy-efficient, sustainable urban spaces. Our platform offers detailed analysis, interactive tools, and actionable solutions designed to tackle the challenges of urban heat in cities like Munich and beyond.
+        <div class="container">
+        <img src="../../images/munichHotWeather.png" background-repeat="no-repeat" background-size="cover">
+        <div class="top-left">Urban<br>Heat Island
+        </div>
+        </div>
+        
 
 </p>
     </header>
